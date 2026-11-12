@@ -29,10 +29,13 @@
 <!-- 変更：ご家族全員をサポートの写真を、男性の写真から「優しい小児科診察のひととき」に差し替え。 -->
 <article class="about-feature-card"><img src="./assets/優しい小児科診察のひととき.png" alt="母親に見守られながら、女性医師の診察を受ける子ども" loading="eager"><div class="about-feature-text"><h3>ご家族全員をサポート</h3><p>当院では、子どもから高齢者まで幅広い世代の皆様の健康を支えます。病気の診察だけでなく、健康上の不安や生活についても気軽にご相談いただける環境を整えています。</p></div></article>
 <article class="about-feature-card"><img src="./assets/room-blue.jpg" alt="" loading="eager"><div class="about-feature-text"><h3>医療設備とチーム医療</h3><p>当院では、患者様の不安を少しでも減らせるよう、診療に適した設備を整えています。医師・看護師・検査技師が連携し、丁寧なケアを提供します。</p></div></article></div>
-  <section class="principles-section"><h2 class="section-title">医院の理念・方針</h2>
+  <section class="principles-section">
+    <!-- 変更：見出し・導入文・7項目を同じ背景の枠で囲み、ひとまとまりの内容として見せる。 -->
+    <div class="principles-panel">
+    <h2 class="section-title">医院の理念・方針</h2>
     <p class="section-lead">佐藤医院は、地域医療の一員として「患者様一人ひとりに寄り添った医療」を心掛けています。<br>地域とともに歩み、安心して相談できる医院であり続けます。</p>
     <!-- 変更：Figmaの番号・見出し・説明文と、各項目専用のイラストに合わせる。HTMLは読み上げ時に自然な番号順を維持。 -->
-    <!-- 変更：画面上の配置はCSSで、上から「3／2・4／1／7・5／6」に指定。 -->
+    <!-- 変更：PCは番号順に「1・2・3／4・5・6／中央に7」、スマートフォンは1〜7の縦並びにする。 -->
     <ol class="principles-grid">
       <!-- 変更：本文は原文のまま、意味のまとまりをspanで囲み、単語の途中や文末だけでの改行を防ぐ。 -->
       <li class="principle principle-1"><img src="./assets/img/1. 信頼関係を築く医療img.png" alt="" loading="lazy" width="1254" height="1254"><h4>1. 信頼関係を築く医療</h4><p><span class="principle-phrase">患者様一人ひとりと向き合い、</span><span class="principle-phrase">納得いただける説明を尽くす</span></p></li>
@@ -45,7 +48,11 @@
       <li class="principle principle-6"><img src="./assets/img/6. プライバシーと安全の確保img.png" alt="" loading="lazy" width="1254" height="1254"><h4>6. プライバシーと安全の確保</h4><p>個人情報保護と感染症対策・衛生管理を徹底</p></li>
       <li class="principle principle-7"><img src="./assets/img/7. チーム医療の推進img.png" alt="" loading="lazy" width="1254" height="1254"><h4>7. チーム医療の推進</h4><p><span class="principle-phrase">多職種が連携し、</span><span class="principle-phrase">患者様に最適なケアを提供</span></p></li>
     </ol>
-    <h3 class="principles-subtitle">患者様と共に歩む未来</h3><p class="principles-afterword">佐藤医院は、皆様の健康を第一に考え、年齢を問わず安心して相談できる地域医療を目指します。<br>これからも患者様の健康を支えるパートナーとして努めてまいります。</p>
+    </div>
+    <!-- 変更：未来への想いは専用の背景ボックスにまとめ、文章はそのまま中央揃えで表示する。 -->
+    <div class="future-panel">
+      <h3 class="principles-subtitle">患者様と共に歩む未来</h3><p class="principles-afterword">佐藤医院は、皆様の健康を第一に考え、年齢を問わず安心して相談できる地域医療を目指します。<br>これからも患者様の健康を支えるパートナーとして努めてまいります。</p>
+    </div>
   </section>
   <section class="staff-section" id="staff"><h2 class="section-title">スタッフ紹介</h2>
   <p class="section-lead">地域の皆様に安心して通院いただけるよう、スタッフ一同、協力して診療にあたっています。<br>それぞれの専門性を活かし、質の高い医療を支えるパートナーとして努めてまいります。</p>

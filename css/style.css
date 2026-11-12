@@ -171,42 +171,54 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .principles-section { margin: 80px auto 0; }
 .principles-section .section-lead { max-width: 980px; }
 /* 変更：7項目を他の紹介カードと同じ最大幅950pxで中央配置。
-   配置パターンとアイコンの大きさを維持し、左右均等の内側余白と項目間の余白を確保する。 */
-.principles-grid { width: 950px; max-width: 100%; margin: 62px auto 0; padding: 32px; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; row-gap: 40px; justify-items: center; }
-/* 変更：黄緑色のグラデーションをやめ、この7項目だけを清潔感のある淡い浅葱色の単色背景にする。 */
-.page-about .principles-grid { background: #EEF8F5; }
+   PCはHTMLの番号順に3列で自動配置し、行間を28pxにして読みやすくコンパクトにまとめる。 */
+.principles-grid { width: 950px; max-width: 100%; margin: 62px auto 0; padding: 32px; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; row-gap: 28px; justify-items: center; }
+/* 変更：見出し・導入文も7項目と同じ淡い浅葱色でつなぎ、最大幅950pxの一体の枠にする。
+   上部と左右に余白を取り、背景は「患者様と共に歩む未来」や他のセクションには広げない。 */
+.page-about .principles-panel { max-width: 950px; margin: 0 auto; padding-top: 32px; background: #EEF8F5; }
+.principles-panel > .section-lead { padding: 0 32px; }
 .principle { display: flex; flex-direction: column; align-items: center; text-align: center; width: 310px; max-width: 100%; min-width: 0; }
 .principle img { display: block; width: 190px; height: 190px; object-fit: contain; }
 .principle h4 { margin: 12px 0 0; font-size: 17px; line-height: 1.6; font-weight: 700; }
 .principle p { margin: 5px 0 0; max-width: 280px; font-size: 14px; line-height: 1.8; overflow-wrap: anywhere; }
-.principle-1 { grid-column: 2; grid-row: 3; }
-.principle-2 { grid-column: 1; grid-row: 2; }
-.principle-3 { grid-column: 2; grid-row: 1; }
-.principle-4 { grid-column: 3; grid-row: 2; }
-.principle-5 { grid-column: 3; grid-row: 4; }
-.principle-6 { grid-column: 2; grid-row: 5; }
-.principle-7 { grid-column: 1; grid-row: 4; }
+/* 変更：1〜6番は番号順に流し込み、3段目の7番だけ中央列に置く。高さ・絶対位置は指定しない。 */
+.principle-7 { grid-column: 2; }
 /* 変更：スマートフォンでは理念セクションだけを画面幅に合わせ、番号順の1列で文章を読みやすくする。
    他のセクションのPC向け幅・配置には変更を加えない。 */
 @media (max-width: 767px) {
   .page-about .principles-section { width: 100vw; max-width: 100%; margin-left: 0; margin-right: 0; padding: 0 20px; }
+  .page-about .principles-panel { padding-top: 28px; }
+  .principles-panel > .section-lead { padding: 0 16px; }
   .principles-section .section-title { font-size: 28px; }
   .principles-section .section-lead { text-align: left; }
-  .principles-section .principles-grid { width: 100%; margin-top: 40px; padding: 28px 16px; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .principles-section .principles-grid { width: 100%; margin-top: 40px; padding: 28px 16px; grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .principles-section .principle { grid-column: auto; grid-row: auto; width: 100%; max-width: 360px; }
   .principles-section .principle img { width: 160px; height: 160px; }
   .principles-section .principle h4 { font-size: 18px; }
   .principles-section .principle p { max-width: 100%; font-size: 16px; }
-  .principles-section .principles-subtitle { margin-top: 48px; font-size: 23px; }
-  .principles-section .principles-afterword { font-size: 16px; text-align: left; }
+  .principles-section .principles-subtitle { font-size: 23px; }
+  .principles-section .principles-afterword { font-size: 16px; text-align: center; }
 }
 /* 変更：本文幅を各列の内側に収めて文字の接近・重なりを防ぐ。
    原文・文字サイズ・太さ・見出しとの間隔を維持し、意味のまとまりと行の長さで改行を整える。 */
 .principles-section .principle p { width: 100%; max-width: 100%; text-wrap: balance; }
-.principles-section .principle:not(:where(.principle-6)) p { min-height: 3.6em; line-height: 1.6; }
+/* 変更：以前の配置を保つための本文の最低高さを撤去し、文章量に応じた自然な高さで整列する。 */
+.principles-section .principle:not(:where(.principle-6)) p { line-height: 1.6; }
 .principles-section .principle-phrase { display: inline-block; }
-.principles-subtitle { margin: 70px auto 0; text-align: center; color: #162b2b; font-size: 27px; font-weight: 700; }
-.principles-afterword { max-width: 900px; margin: 25px auto 0; font-size: 17px; line-height: 1.8; text-align: center; }
+/* 変更：「患者様と共に歩む未来」だけを最大幅950pxの角丸ボックスにする。
+   既存の文字サイズと文章を維持し、上の理念との間隔・内側余白・指定の色を整える。 */
+.page-about .future-panel { max-width: 950px; margin: 40px auto 0; padding: 40px 48px; border-radius: 16px; background: #F1F8F6; }
+.future-panel .principles-subtitle { margin: 0; text-align: center; color: #397F77; font-size: 27px; font-weight: 700; }
+.future-panel .principles-afterword { max-width: 900px; margin: 20px auto 0; color: #26383C; font-size: 17px; line-height: 1.5; text-align: center; }
+/* 変更：このボックスからスタッフ紹介までの空白だけを短縮し、他のデザインは維持する。 */
+.page-about .principles-section + .staff-section { padding-top: 64px; }
+@media (max-width: 767px) {
+  /* 変更：画面の左右余白を保ちながら、スマートフォンでも背景ボックスと文章を中央に収める。 */
+  .page-about .future-panel { margin-top: 32px; padding: 28px 20px; }
+  .future-panel .principles-subtitle { font-size: 23px; }
+  .future-panel .principles-afterword { font-size: 16px; }
+  .page-about .principles-section + .staff-section { padding-top: 48px; }
+}
 .staff-section { padding-top: 155px; }
 .staff-section .section-lead { max-width: 980px; }
 .staff-profiles { width: 985px; max-width: 100%; display: flex; flex-direction: column; gap: 75px; margin: 64px auto 0; }
