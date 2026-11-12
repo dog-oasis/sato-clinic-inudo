@@ -170,8 +170,11 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .page-about .about-feature-card:nth-child(3) > img { object-position: center; }
 .principles-section { margin: 80px auto 0; }
 .principles-section .section-lead { max-width: 980px; }
-/* 変更：理念7項目をFigmaの「3／2・4／1／7・5／6」に配置。白背景と既存のあさぎ色を維持。 */
-.principles-grid { width: 1050px; max-width: 100%; margin: 62px auto 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 35px; row-gap: 24px; justify-items: center; }
+/* 変更：7項目を他の紹介カードと同じ最大幅950pxで中央配置。
+   配置パターンとアイコンの大きさを維持し、左右均等の内側余白と項目間の余白を確保する。 */
+.principles-grid { width: 950px; max-width: 100%; margin: 62px auto 0; padding: 32px; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; row-gap: 40px; justify-items: center; }
+/* 変更：黄緑色のグラデーションをやめ、この7項目だけを清潔感のある淡い浅葱色の単色背景にする。 */
+.page-about .principles-grid { background: #EEF8F5; }
 .principle { display: flex; flex-direction: column; align-items: center; text-align: center; width: 310px; max-width: 100%; min-width: 0; }
 .principle img { display: block; width: 190px; height: 190px; object-fit: contain; }
 .principle h4 { margin: 12px 0 0; font-size: 17px; line-height: 1.6; font-weight: 700; }
@@ -189,7 +192,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   .page-about .principles-section { width: 100vw; max-width: 100%; margin-left: 0; margin-right: 0; padding: 0 20px; }
   .principles-section .section-title { font-size: 28px; }
   .principles-section .section-lead { text-align: left; }
-  .principles-section .principles-grid { width: 100%; margin-top: 40px; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .principles-section .principles-grid { width: 100%; margin-top: 40px; padding: 28px 16px; grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .principles-section .principle { grid-column: auto; grid-row: auto; width: 100%; max-width: 360px; }
   .principles-section .principle img { width: 160px; height: 160px; }
   .principles-section .principle h4 { font-size: 18px; }
@@ -197,22 +200,11 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   .principles-section .principles-subtitle { margin-top: 48px; font-size: 23px; }
   .principles-section .principles-afterword { font-size: 16px; text-align: left; }
 }
-/* 変更：6番以外の本文だけを350pxまで広げ、文末の1文字・短い単語が残らないよう行の長さを均等化。
-   カード・アイコン・見出しの幅や配置、本文の文字サイズ・太さは維持する。
-   元の本文の高さを確保し、改行調整によって後続アイコンの縦位置が動くことを防ぐ。 */
-.principles-section .principle:not(:where(.principle-6)) p { width: min(350px, calc(100vw - 40px)); max-width: none; min-height: 3.6em; line-height: 1.6; text-wrap: balance; }
-.principles-section .principle-7 p { min-height: 1.8em; }
+/* 変更：本文幅を各列の内側に収めて文字の接近・重なりを防ぐ。
+   原文・文字サイズ・太さ・見出しとの間隔を維持し、意味のまとまりと行の長さで改行を整える。 */
+.principles-section .principle p { width: 100%; max-width: 100%; text-wrap: balance; }
+.principles-section .principle:not(:where(.principle-6)) p { min-height: 3.6em; line-height: 1.6; }
 .principles-section .principle-phrase { display: inline-block; }
-/* 変更：スマートフォンでは既存の本文幅を上限とし、6番を含む後続項目の位置を維持する。 */
-@media (max-width: 767px) {
-  .principles-section .principle:not(:where(.principle-6)) p { width: 100%; }
-}
-@media (min-width: 376px) and (max-width: 767px) {
-  .principles-section .principle-2 p { min-height: 1.8em; }
-}
-@media (max-width: 359px) {
-  .principles-section .principle-7 p { min-height: 3.6em; }
-}
 .principles-subtitle { margin: 70px auto 0; text-align: center; color: #162b2b; font-size: 27px; font-weight: 700; }
 .principles-afterword { max-width: 900px; margin: 25px auto 0; font-size: 17px; line-height: 1.8; text-align: center; }
 .staff-section { padding-top: 155px; }
