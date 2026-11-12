@@ -190,6 +190,8 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .staff-profiles { width: 985px; max-width: 100%; display: flex; flex-direction: column; gap: 75px; margin: 64px auto 0; }
 .staff-profile { display: grid; grid-template-columns: 220px 1fr; gap: 55px; align-items: center; min-height: 300px; }
 .staff-profile > img { display: block; width: 220px; height: 288px; border-radius: 16px; object-fit: cover; object-position: center 30%; }
+.staff-profile img[alt="看護師長 鈴木 真里"] { object-position: 88% 30%; }
+.staff-profile img[alt="医療事務 山本 花"] { object-position: 5% 30%; }
 .staff-bio h4 { margin: 0 0 25px; font-size: 26px; font-weight: 700; color: #111; }
 .staff-bio p { margin: 0 0 10px; color: #161d1d; font-size: 17px; line-height: 1.7; }
 .staff-bio strong { font-weight: 700; }
