@@ -197,6 +197,22 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   .principles-section .principles-subtitle { margin-top: 48px; font-size: 23px; }
   .principles-section .principles-afterword { font-size: 16px; text-align: left; }
 }
+/* 変更：6番以外の本文だけを350pxまで広げ、文末の1文字・短い単語が残らないよう行の長さを均等化。
+   カード・アイコン・見出しの幅や配置、本文の文字サイズ・太さは維持する。
+   元の本文の高さを確保し、改行調整によって後続アイコンの縦位置が動くことを防ぐ。 */
+.principles-section .principle:not(:where(.principle-6)) p { width: min(350px, calc(100vw - 40px)); max-width: none; min-height: 3.6em; line-height: 1.6; text-wrap: balance; }
+.principles-section .principle-7 p { min-height: 1.8em; }
+.principles-section .principle-phrase { display: inline-block; }
+/* 変更：スマートフォンでは既存の本文幅を上限とし、6番を含む後続項目の位置を維持する。 */
+@media (max-width: 767px) {
+  .principles-section .principle:not(:where(.principle-6)) p { width: 100%; }
+}
+@media (min-width: 376px) and (max-width: 767px) {
+  .principles-section .principle-2 p { min-height: 1.8em; }
+}
+@media (max-width: 359px) {
+  .principles-section .principle-7 p { min-height: 3.6em; }
+}
 .principles-subtitle { margin: 70px auto 0; text-align: center; color: #162b2b; font-size: 27px; font-weight: 700; }
 .principles-afterword { max-width: 900px; margin: 25px auto 0; font-size: 17px; line-height: 1.8; text-align: center; }
 .staff-section { padding-top: 155px; }
