@@ -158,31 +158,45 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 /* About page */
 .page-about .about-page-content { max-width: 1140px; padding-bottom: 95px; }
 .about-page-lead { max-width: 940px; margin: 40px auto 52px; font-size: 18px; line-height: 1.85; font-weight: 500; text-align: center; }
-.about-feature-list { width: 950px; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 50px; }
-.about-feature-card { position: relative; isolation: isolate; min-height: 590px; overflow: hidden; border-radius: 22px; background: #d7e8e3; }
-.about-feature-card > img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.about-feature-card::before { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg,rgba(245,251,249,.82),rgba(245,251,249,.57) 50%,rgba(245,251,249,.08) 100%); }
-.about-feature-text { max-width: 560px; padding: 40px 45px 45px; }
-.about-feature-text h3 { margin: 0 0 46px; font-size: 26px; font-weight: 700; color: #11211d; }
-.about-feature-text p { max-width: 480px; margin: 0; font-size: 18px; line-height: 1.8; color: #161d1d; }
-.about-feature-card:nth-child(2)::before { background: linear-gradient(90deg,rgba(240,251,242,.35),rgba(240,251,242,.32) 58%,rgba(240,251,242,.04)); }
-.about-feature-card:nth-child(3)::before { background: linear-gradient(90deg,rgba(246,249,248,.92),rgba(246,249,248,.66) 53%,rgba(246,249,248,.09)); }
-.about-feature-card:nth-child(3) > img { object-position: 70% 40%; }
-.about-feature-card:nth-child(4)::before { background: linear-gradient(90deg,rgba(251,253,252,.75),rgba(251,253,252,.35) 70%,rgba(251,253,252,.08)); }
+/* 紹介カードは当院ページだけ2カラムに統一し、写真への文字重ねをなくす。 */
+.page-about .about-feature-list { width: 950px; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+/* 変更：行の高さをカード内に収め、写真の縦横比で文章が下にずれないよう全カードの配置を統一。 */
+.page-about .about-feature-card { display: grid; grid-template-columns: 40% 60%; grid-template-rows: minmax(0, 1fr); height: 360px; overflow: hidden; border-radius: 18px; background: #f4faf8; }
+.page-about .about-feature-card > img { grid-column: 2; grid-row: 1; min-height: 0; width: 100%; height: 100%; object-fit: cover; }
+.page-about .about-feature-text { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; justify-content: center; padding: 28px; }
+.page-about .about-feature-text h3 { margin: 0 0 18px; font-size: 24px; line-height: 1.5; font-weight: 700; color: #11211d; }
+.page-about .about-feature-text p { margin: 0; font-size: 16px; line-height: 1.6; font-weight: 400; color: #161d1d; }
+/* 変更：小児科の写真は中央を表示し、医師・子ども・母親が見える構図にする。 */
+.page-about .about-feature-card:nth-child(3) > img { object-position: center; }
 .principles-section { margin: 80px auto 0; }
 .principles-section .section-lead { max-width: 980px; }
-.principles-grid { width: 1050px; margin: 62px auto 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3,1fr); column-gap: 35px; row-gap: 40px; justify-items: center; }
-.principle { display: flex; flex-direction: column; align-items: center; text-align: center; width: 310px; max-width: 100%; min-height: 235px; }
-.principle img { display: block; width: 120px; height: 105px; object-fit: contain; }
-.principle h4 { margin: 7px 0 0; font-size: 17px; line-height: 1.5; font-weight: 700; }
-.principle p { margin: 4px 0 0; max-width: 240px; font-size: 14px; line-height: 1.5; }
-.principle-1 { grid-column: 2; grid-row: 1; }
+/* 変更：理念7項目をFigmaの「3／2・4／1／7・5／6」に配置。白背景と既存のあさぎ色を維持。 */
+.principles-grid { width: 1050px; max-width: 100%; margin: 62px auto 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 35px; row-gap: 24px; justify-items: center; }
+.principle { display: flex; flex-direction: column; align-items: center; text-align: center; width: 310px; max-width: 100%; min-width: 0; }
+.principle img { display: block; width: 190px; height: 190px; object-fit: contain; }
+.principle h4 { margin: 12px 0 0; font-size: 17px; line-height: 1.6; font-weight: 700; }
+.principle p { margin: 5px 0 0; max-width: 280px; font-size: 14px; line-height: 1.8; overflow-wrap: anywhere; }
+.principle-1 { grid-column: 2; grid-row: 3; }
 .principle-2 { grid-column: 1; grid-row: 2; }
-.principle-3 { grid-column: 3; grid-row: 2; }
-.principle-4 { grid-column: 2; grid-row: 3; }
-.principle-5 { grid-column: 1; grid-row: 4; }
-.principle-6 { grid-column: 3; grid-row: 4; }
-.principle-7 { grid-column: 2; grid-row: 5; }
+.principle-3 { grid-column: 2; grid-row: 1; }
+.principle-4 { grid-column: 3; grid-row: 2; }
+.principle-5 { grid-column: 3; grid-row: 4; }
+.principle-6 { grid-column: 2; grid-row: 5; }
+.principle-7 { grid-column: 1; grid-row: 4; }
+/* 変更：スマートフォンでは理念セクションだけを画面幅に合わせ、番号順の1列で文章を読みやすくする。
+   他のセクションのPC向け幅・配置には変更を加えない。 */
+@media (max-width: 767px) {
+  .page-about .principles-section { width: 100vw; max-width: 100%; margin-left: 0; margin-right: 0; padding: 0 20px; }
+  .principles-section .section-title { font-size: 28px; }
+  .principles-section .section-lead { text-align: left; }
+  .principles-section .principles-grid { width: 100%; margin-top: 40px; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .principles-section .principle { grid-column: auto; grid-row: auto; width: 100%; max-width: 360px; }
+  .principles-section .principle img { width: 160px; height: 160px; }
+  .principles-section .principle h4 { font-size: 18px; }
+  .principles-section .principle p { max-width: 100%; font-size: 16px; }
+  .principles-section .principles-subtitle { margin-top: 48px; font-size: 23px; }
+  .principles-section .principles-afterword { font-size: 16px; text-align: left; }
+}
 .principles-subtitle { margin: 70px auto 0; text-align: center; color: #162b2b; font-size: 27px; font-weight: 700; }
 .principles-afterword { max-width: 900px; margin: 25px auto 0; font-size: 17px; line-height: 1.8; text-align: center; }
 .staff-section { padding-top: 155px; }
