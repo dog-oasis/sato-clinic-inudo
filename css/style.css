@@ -145,7 +145,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   .news-arrow { width: 36px; height: 44px; }
   .home-news-list { grid-template-columns: minmax(0, 1fr); }
   .home-news-item { padding: 18px; min-height: 190px; }
-  .home-news-name { font-size: 16px; }
+  .home-news-name, .news-index-link { font-size: 16px; }
   .news-carousel-controls { gap: 4px 10px; }
   .news-playback-note { flex-basis: 100%; text-align: center; }
   .home-schedule .section-action .pill { min-width: 0; width: min(100%, 290px); }
@@ -213,17 +213,45 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 /* Individual service listings */
 .page-services .services-page-content { max-width: 1140px; padding-bottom: 270px; }
 .services-page-lead { margin-top: 34px; margin-bottom: 58px; font-size: 19px; font-weight: 500; line-height: 1.95; }
-.service-detail-list { width: 900px; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 37px; }
-.service-detail-card { position: relative; isolation: isolate; height: 320px; overflow: hidden; border-radius: 19px; background: #f2f8f6; }
-.service-detail-photo { position: absolute; z-index: -2; top: 0; right: 0; width: 57%; height: 100%; object-fit: cover; object-position: center; }
-.service-detail-card::before { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg,#f3faf8 0%,#f3faf8 33%,rgba(243,250,248,.92) 43%,rgba(243,250,248,.06) 72%,rgba(243,250,248,.04) 100%); }
-.service-detail-content { position: relative; padding: 26px 34px; height: 100%; }
-.service-detail-content h3 { margin: 0; color: #161b1a; font-size: 24px; line-height: 1.5; font-weight: 700; }
-.service-detail-content p { max-width: 345px; margin: 35px 0 0; color: #111; font-size: 16px; line-height: 1.55; font-weight: 500; }
-.service-detail-card.service-alt .service-detail-photo { left: 0; right: auto; width: 55%; object-position: center 35%; opacity: .64; }
-.service-detail-card.service-alt::before { background: linear-gradient(90deg,rgba(244,250,248,.02),rgba(244,250,248,.36) 42%,rgba(244,250,248,.86) 62%,#f4faf8 100%); }
-.service-detail-card.service-alt .service-detail-content p { margin-left: 49%; max-width: 380px; }
-.service-detail-card.service-alt .service-detail-content h3 { max-width: 45%; }
+.page-services .service-detail-list { width: 950px; max-width: calc(100% - 32px); margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+.page-services .service-detail-card { position: relative; isolation: isolate; display: grid; grid-template-columns: 40% 60%; height: 340px; overflow: hidden; border-radius: 19px; background: #fff; }
+.page-services .service-detail-photo { grid-column: 2; grid-row: 1; display: block; min-width: 0; min-height: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--service-photo-position, 50% 50%); opacity: 1; }
+/* 写真には色を重ねず、文章側だけ従来と同じ淡い浅葱色の背景を維持する。 */
+.page-services .service-detail-content { position: relative; z-index: 2; grid-column: 1; grid-row: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: 28px 32px; background: rgba(57,127,119,.2); }
+.page-services .service-detail-content h3 { margin: 0; color: var(--ink); font-size: 22px; line-height: 1.5; font-weight: 700; overflow-wrap: anywhere; }
+.page-services .service-detail-content p { margin: 20px 0 0; color: var(--ink); font-size: 16px; line-height: 1.5; font-weight: 400; overflow-wrap: anywhere; }
+.page-services .service-detail-card:nth-child(even) { grid-template-columns: 60% 40%; }
+.page-services .service-detail-card:nth-child(even) .service-detail-photo { grid-column: 1; }
+.page-services .service-detail-card:nth-child(even) .service-detail-content { grid-column: 2; }
+/* 顔と診察の手元を残す位置。画像は加工・引き伸ばし・追加ズームを行わない。 */
+.page-services #service-1 { --service-photo-position: 53% 40%; }
+.page-services #service-2 { --service-photo-position: 48% 45%; }
+.page-services #service-3 { --service-photo-position: 52% 35%; }
+.page-services #service-4 { --service-photo-position: 48% 40%; }
+.page-services #service-5 { --service-photo-position: 54% 35%; }
+.page-services #service-6 { --service-photo-position: 68% 45%; }
+.page-services #service-7 { --service-photo-position: 42% 40%; }
+@media (max-width: 1119px) {
+  /* 本文を端末の実寸で表示し、共通部分は従来のPC配置比率を保つ。 */
+  .page-services { min-width: 0; }
+  .page-services > .site-header,
+  .page-services > .site-footer { width: 1120px; zoom: calc(100vw / 1120px); }
+}
+@media (max-width: 900px) {
+  .page-services .service-detail-card,
+  .page-services .service-detail-card:nth-child(even) { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .page-services .service-detail-card .service-detail-photo,
+  .page-services .service-detail-card:nth-child(even) .service-detail-photo { grid-column: 1; grid-row: 1; height: auto; aspect-ratio: 7 / 4; }
+  .page-services .service-detail-card .service-detail-content,
+  .page-services .service-detail-card:nth-child(even) .service-detail-content { grid-column: 1; grid-row: 2; min-height: 220px; padding: 28px; }
+}
+@media (max-width: 479px) {
+  .page-services .service-detail-list { gap: 24px; }
+  .page-services .service-detail-card .service-detail-content,
+  .page-services .service-detail-card:nth-child(even) .service-detail-content { min-height: 268px; padding: 24px; }
+  .page-services .service-detail-content h3 { font-size: 20px; }
+  .page-services .service-detail-content p { margin-top: 16px; }
+}
 
 /* About page */
 .page-about .about-page-content { max-width: 1140px; padding-bottom: 95px; }
