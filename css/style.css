@@ -94,6 +94,12 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .news-card-link { align-self: flex-end; margin-top: auto; color: var(--green-dark); font-size: 14px; font-weight: 700; }
 .news-card-link span { margin-left: 10px; font-size: 24px; line-height: 1; vertical-align: -2px; }
 .news-card-link:hover { text-decoration: underline; }
+.home-news-item.news-index-card { position: relative; }
+.news-index-link { display: flex; flex: 1; align-items: center; justify-content: center; color: var(--green-dark); font-size: 17px; font-weight: 700; text-align: center; overflow-wrap: anywhere; }
+.news-index-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.news-index-link:hover { text-decoration: underline; }
+.news-index-link:focus-visible { outline: none; }
+.news-index-link:focus-visible::after { outline: 3px solid var(--green); outline-offset: -3px; }
 .news-arrow { width: 44px; height: 44px; padding: 0 0 4px; border: 0; border-radius: 50%; background: var(--mint); color: var(--green-dark); font-size: 32px; line-height: 1; cursor: pointer; }
 .news-prev { grid-column: 1; grid-row: 1; }
 .news-next { grid-column: 3; grid-row: 1; }
@@ -112,17 +118,20 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .home-schedule .section-action { justify-content: center; max-width: 1010px; margin: 24px auto 0; }
 .home-schedule .section-action .pill { min-width: 290px; min-height: 48px; font-size: 16px; }
 
-@media (max-width: 1000px) {
-  .news-carousel { --news-columns: 2; }
-  .home-news-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 767px) {
-  /* 他セクションは従来と同じPCレイアウトの縮小表示を維持する。
-     ページ全体の自動縮小を外し、診療時間・お知らせだけ端末の実寸で表示。 */
+@media (max-width: 1119px) {
+  /* PC固定幅によるページ全体のはみ出しを防ぐ。共通部分・他セクションは従来の配置比率で縮小。 */
   .page-home { min-width: 0; }
   .page-home > .site-header,
   .page-home > .site-footer,
   .page-home main > section:not(.home-schedule) { width: 1120px; min-width: 1120px; zoom: calc(100vw / 1120px); }
+  .page-home .home-schedule { width: 100vw; max-width: 100vw; margin-left: 0; }
+  .news-carousel { --news-columns: 2; }
+  .home-news-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 768px) and (max-width: 1119px) {
+  .news-carousel { width: calc(100% - 32px); }
+}
+@media (max-width: 767px) {
   .page-home .home-schedule { width: 100vw; max-width: 100vw; margin-left: 0; padding: 56px 16px 0; }
   .home-schedule .section-title { font-size: 27px; }
   .home-schedule .section-lead { text-align: left; font-size: 14px; }
@@ -197,7 +206,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .news-row time { font-size: 25px; white-space: nowrap; }
 .news-row-title { line-height: 1.7; }
 .news-expand { position: relative; justify-self: end; align-self: start; }
-.news-expand summary { display: flex; list-style: none; font-size: 16px; }
+.news-expand summary, .news-expand > a { display: flex; list-style: none; font-size: 16px; }
 .news-expand summary::-webkit-details-marker { display: none; }
 .news-expanded-copy { position: absolute; top: 52px; right: 0; z-index: 3; width: 420px; padding: 20px 24px; background: #f4faf8; border: 1px solid #c9e4dc; border-radius: 10px; color: var(--ink); font-size: 15px; box-shadow: 0 9px 28px rgba(17,70,64,.12); }
 

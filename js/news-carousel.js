@@ -3,6 +3,8 @@
   const root = document.querySelector('.news-carousel');
   if (!root) return;
   const track = root.querySelector('.home-news-list');
+  // 一覧カードは記事データに含めず、通信成功・失敗のどちらでも末尾に配置する。
+  const indexCard = track.querySelector('.news-index-card');
   const viewport = root.querySelector('.news-viewport');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -24,7 +26,7 @@
         title.textContent = row.querySelector('.news-row-title').textContent;
         const link = document.createElement('a');
         link.className = 'news-card-link';
-        link.href = `./news.html#${encodeURIComponent(row.id)}`;
+        link.href = `./news-detail.html?id=${encodeURIComponent(row.id)}`;
         link.setAttribute('aria-label', `${title.textContent}：詳しくはこちら`);
         link.innerHTML = '詳しくはこちら<span aria-hidden="true"> ›</span>';
         card.append(row.querySelector('time').cloneNode(true), title, link);
@@ -36,11 +38,12 @@
   }
 
   function start() {
+    const articles = [...track.children].filter(card => !card.classList.contains('news-index-card'));
+    // 循環用の複製カードを追加する前に、実際の記事数を表示する。
+    root.querySelector('.news-count').textContent = `${articles.length}件`;
+    track.replaceChildren(...articles, indexCard);
     const originals = [...track.children];
     const count = originals.length;
-    // 循環用の複製カードを追加する前に、実際の記事数を表示する。
-    root.querySelector('.news-count').textContent = `${count}件`;
-    if (!count) return;
     const pad = Math.min(3, count);
     let position = pad;
     let moving = false;
@@ -63,7 +66,8 @@
     originals.forEach((card, i) => {
       const button = document.createElement('button');
       button.type = 'button';
-      button.setAttribute('aria-label', `${i + 1}件目から表示：${card.querySelector('h3').textContent}`);
+      const label = card.querySelector('h3, .news-index-link').textContent;
+      button.setAttribute('aria-label', `${i + 1}枚目から表示：${label}`);
       button.addEventListener('click', () => move(i - current(), true));
       dots.append(button);
     });
@@ -107,7 +111,7 @@
       position += amount;
       moving = true;
       paint(true);
-      if (manual) status.textContent = `${count}件中${current() + 1}件目から表示`;
+      if (manual) status.textContent = `${count}枚中${current() + 1}枚目から表示`;
       if (reduced.matches) finish();
       // transitionendが発生しない背景タブ等でもロックを解除する。
       else animationTimer = setTimeout(finish, 600);
