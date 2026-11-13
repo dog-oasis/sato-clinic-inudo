@@ -12,7 +12,9 @@
   --mint: #eaf4f2;
   --mint-light: #f4faf8;
   --page: #fff;
-  --content: 1140px;
+  --content: 950px;
+  --page-gutter: 32px;
+  --section-space: 96px;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -32,10 +34,11 @@ button, summary { font: inherit; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--green); }
 .header-phone { display: block; flex: none; width: 210px; margin-top: -4px; }
 .header-phone img { display: block; width: 100%; height: auto; }
-.section-wrap { width: 100%; max-width: var(--content); margin: 0 auto; }
+main { padding-top: 48px; }
+.section-wrap { width: 100%; max-width: var(--content); margin: 0 auto; padding-left: var(--page-gutter); padding-right: var(--page-gutter); }
 .section-title { position: relative; margin: 0; color: #263a3c; font-size: 36px; font-weight: 700; line-height: 1.45; text-align: center; letter-spacing: .01em; }
 .section-title::after { content: ""; display: block; width: 75px; height: 2px; margin: 19px auto 0; background: var(--rule); }
-.section-lead { margin: 34px auto 0; font-size: 16px; line-height: 1.7; text-align: center; }
+.section-lead { max-width: 800px; margin: 32px auto 0; font-size: 16px; line-height: 1.7; text-align: left; }
 .pill { display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; min-height: 44px; padding: 7px 25px; font-size: 14px; line-height: 1.4; border: 1px solid transparent; border-radius: 999px; transition: background-color .18s ease, color .18s ease, transform .18s ease; cursor: pointer; }
 a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .pill-solid { min-width: 157px; background: var(--green); color: #fff; }
@@ -63,19 +66,19 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 
 /* Homepage hero */
 .hero-section { padding: 0 0 0; }
-.hero-frame { position: relative; display: flex; align-items: center; width: calc(100% - 160px); height: 730px; max-width: 1280px; margin: 0 auto; overflow: hidden; border-radius: 18px; background: #d4eeea url('../assets/hero-courtyard-muted.jpg') center center / cover no-repeat; }
+.hero-frame { position: relative; display: flex; align-items: center; width: calc(100% - 2 * var(--page-gutter)); height: 730px; max-width: 1080px; margin: 0 auto; overflow: hidden; border-radius: 18px; background: #d4eeea url('../assets/hero-courtyard-muted.jpg') center center / cover no-repeat; }
 .hero-frame::before { content: ""; position: absolute; inset: 0; background: rgba(211,241,237,.16); pointer-events: none; }
-.hero-text-side { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: space-between; flex: none; width: 48%; height: 435px; padding: 0 25px 0 70px; }
+.hero-text-side { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: space-between; flex: none; width: 52%; height: 435px; padding: 0 32px; }
 .hero-text-side h1 { margin: 0; font-family: 'Yu Mincho', 'Hiragino Mincho ProN', 'Noto Serif JP', serif; color: #263838; font-size: 47px; font-weight: 400; letter-spacing: .1em; line-height: 1.5; white-space: nowrap; }
-.hero-small-links { display: grid; grid-template-columns: repeat(2, 210px); gap: 40px; }
-.hero-link-tile { display: flex; flex-direction: column; justify-content: center; width: 210px; height: 105px; padding: 15px 20px; border-radius: 17px; background: rgba(255,255,255,.95); color: #1f3535; transition: background .18s ease; }
+.hero-small-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.hero-link-tile { display: flex; flex-direction: column; justify-content: center; min-width: 0; height: 105px; padding: 15px 20px; border-radius: 17px; background: rgba(255,255,255,.95); color: #1f3535; transition: background .18s ease; }
 .hero-link-tile:hover { background: #fff; }
 .hero-link-tile strong { font-size: 17px; font-weight: 700; }
 .hero-link-tile small { margin-top: 4px; font-size: 13px; }
-.hero-building { position: absolute; z-index: 1; top: 25%; right: 4%; width: 50%; height: 59%; border-radius: 17px; object-fit: cover; object-position: center; box-shadow: 0 2px 8px rgba(14,76,69,.04); }
+.hero-building { position: absolute; z-index: 1; top: 25%; right: 3%; width: 43%; height: auto; border-radius: 17px; object-fit: contain; object-position: center; box-shadow: 0 2px 8px rgba(14,76,69,.04); }
 
 /* Homepage announcement and schedule */
-.home-schedule { padding-top: 94px; }
+.home-schedule { padding-top: var(--section-space); }
 .home-schedule .section-lead { margin-bottom: 34px; }
 .news-carousel { --news-columns: 3; max-width: 1060px; margin: 50px auto 0; }
 .news-carousel-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; color: var(--green); }
@@ -123,15 +126,15 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   .page-home { min-width: 0; }
   .page-home > .site-header,
   .page-home > .site-footer { width: 1120px; min-width: 1120px; zoom: calc(100vw / 1120px); }
-  .page-home .home-schedule { width: 100vw; max-width: 100vw; margin-left: 0; }
+  .page-home .home-schedule { width: 100%; max-width: var(--content); margin-left: auto; }
   .news-carousel { --news-columns: 2; }
   .home-news-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 768px) and (max-width: 1119px) {
-  .news-carousel { width: calc(100% - 32px); }
+  .news-carousel { width: 100%; }
 }
 @media (max-width: 767px) {
-  .page-home .home-schedule { width: 100vw; max-width: 100vw; margin-left: 0; padding: 56px 16px 0; }
+  .page-home .home-schedule { padding: var(--section-space) var(--page-gutter) 0; }
   .home-schedule .section-lead { text-align: left; }
   .home-schedule .schedule-table th:first-child { width: 88px; }
   .home-schedule .schedule-table thead th { font-size: 14px; }
@@ -153,7 +156,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 }
 
 /* Homepage services */
-.home-services { padding-top: 114px; }
+.home-services { padding-top: var(--section-space); }
 .home-services .section-lead { margin-bottom: 42px; }
 .home-service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; width: 1040px; max-width: 100%; margin: 0 auto; }
 .home-service-card { min-height: 240px; border-radius: 16px; background: #e9f3f0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #203a3b; transition: background .18s ease; }
@@ -164,28 +167,29 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .home-services .section-action { width: 1040px; max-width: 100%; margin: 43px auto 0; }
 
 /* Homepage director */
-.home-greeting { padding-top: 124px; }
+.home-greeting { padding-top: var(--section-space); }
 .greeting-grid { display: grid; grid-template-columns: minmax(0, 1fr) 405px; gap: 66px; max-width: 1040px; margin: 32px auto 0; align-items: start; }
 .greeting-copy { line-height: 1.9; font-size: 18px; }
 .greeting-copy p { margin: 0 0 20px; }
+.greeting-copy p:last-child { margin-bottom: 0; }
 .greeting-portrait > img:first-child { display: block; width: 405px; height: 460px; object-fit: cover; object-position: 50% 34%; border-radius: 19px; }
 .greeting-portrait > p { margin: 8px 0 0; font-size: 16px; }
 .greeting-portrait .director-signature { display: block; width: 305px; margin: 11px auto 0; }
 
 /* Homepage about and staff */
-.home-about { padding-top: 97px; }
+.home-about { padding-top: var(--section-space); }
 .about-teaser { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; width: 1060px; max-width: 100%; margin: 40px auto 0; }
 .about-teaser-copy { font-size: 18px; line-height: 1.9; }
 .about-teaser-copy p { margin: 0 0 21px; }
 .about-teaser-images { display: flex; gap: 25px; }
 .about-teaser-images img { width: calc((100% - 25px)/2); height: 306px; border-radius: 14px; object-fit: cover; }
-.home-staff { padding-top: 100px; }
+.home-staff { padding-top: var(--section-space); }
 .staff-teaser-card { display: flex; width: 510px; height: 240px; flex-direction: column; align-items: center; justify-content: center; margin: 36px auto 0; border-radius: 14px; background: #e9f3f0; color: #223a39; font-size: 20px; font-weight: 700; transition: background .18s ease; }
 .staff-teaser-icons { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
 .staff-teaser-icons img { width: 79px; height: 79px; object-fit: contain; }
 
 /* Homepage access */
-.home-access { padding-top: 114px; padding-bottom: 120px; }
+.home-access { padding-top: var(--section-space); padding-bottom: 120px; }
 .home-access-grid { display: grid; grid-template-columns: 400px 1fr; gap: 85px; align-items: stretch; width: 1040px; max-width: 100%; margin: 40px auto 0; }
 .access-info-card { border-radius: 18px; background: var(--mint); padding: 30px 36px; line-height: 1.65; }
 .access-info-card h3 { font-size: 19px; margin: 0 0 8px; font-weight: 700; }
@@ -195,13 +199,13 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .home-access .section-action { width: 1040px; max-width: 100%; margin: 32px auto 0; }
 
 /* Secondary pages */
-.subpage-section { margin-left: auto; margin-right: auto; }
-.page-news .news-page-content { max-width: 1140px; min-height: 0; padding: 0 0 60px; }
+.subpage-section { width: 100%; margin-left: auto; margin-right: auto; padding-left: var(--page-gutter); padding-right: var(--page-gutter); }
+.page-news .news-page-content { max-width: 900px; min-height: 0; padding-bottom: 80px; }
 .page-news .section-title { color: #111; }
 .page-news .section-title::after { background: #333; }
-.news-page-list { list-style: none; padding: 0; max-width: 1100px; margin: 30px auto 0; }
-.news-row { display: grid; grid-template-columns: 220px minmax(0,1fr) 168px; gap: 30px; align-items: start; min-height: 97px; color: #111; font-size: 25px; }
-.news-row time { font-size: 25px; white-space: nowrap; }
+.news-page-list { list-style: none; padding: 0; max-width: 900px; margin: 40px auto 0; }
+.news-row { display: grid; grid-template-columns: 150px minmax(0,1fr) 168px; gap: 24px; align-items: start; min-height: 97px; color: #111; font-size: 20px; }
+.news-row time { font-size: 18px; white-space: nowrap; }
 .news-row-title { line-height: 1.7; }
 .news-expand { position: relative; justify-self: end; align-self: start; }
 .news-expand summary, .news-expand > a { display: flex; list-style: none; font-size: 16px; }
@@ -209,11 +213,11 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .news-expanded-copy { position: absolute; top: 52px; right: 0; z-index: 3; width: 420px; padding: 20px 24px; background: #f4faf8; border: 1px solid #c9e4dc; border-radius: 10px; color: var(--ink); font-size: 15px; box-shadow: 0 9px 28px rgba(17,70,64,.12); }
 
 /* Individual service listings */
-.page-services .services-page-content { max-width: 1140px; padding-bottom: 270px; }
+.page-services .services-page-content { max-width: var(--content); padding-bottom: 270px; }
 .services-page-lead { margin-top: 34px; margin-bottom: 58px; font-size: 19px; font-weight: 500; line-height: 1.95; }
-.page-services .service-detail-list { width: 950px; max-width: calc(100% - 32px); margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
-.page-services .service-detail-card { position: relative; isolation: isolate; display: grid; grid-template-columns: 40% 60%; height: 340px; overflow: hidden; border-radius: 19px; background: #fff; }
-.page-services .service-detail-photo { grid-column: 2; grid-row: 1; display: block; min-width: 0; min-height: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--service-photo-position, 50% 50%); opacity: 1; }
+.page-services .service-detail-list { width: 950px; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+.page-services .service-detail-card { position: relative; isolation: isolate; display: grid; grid-template-columns: 40% 60%; min-height: 340px; overflow: hidden; border-radius: 19px; background: #fff; }
+.page-services .service-detail-photo { grid-column: 2; grid-row: 1; display: block; align-self: center; min-width: 0; min-height: 0; width: 100%; height: auto; object-fit: contain; object-position: center; opacity: 1; }
 /* 写真には色を重ねず、文章側だけ従来と同じ淡い浅葱色の背景を維持する。 */
 .page-services .service-detail-content { position: relative; z-index: 2; grid-column: 1; grid-row: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: 28px 32px; background: rgba(57,127,119,.2); }
 .page-services .service-detail-content h3 { margin: 0; color: var(--ink); font-size: 22px; line-height: 1.5; font-weight: 700; overflow-wrap: anywhere; }
@@ -221,14 +225,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .page-services .service-detail-card:nth-child(even) { grid-template-columns: 60% 40%; }
 .page-services .service-detail-card:nth-child(even) .service-detail-photo { grid-column: 1; }
 .page-services .service-detail-card:nth-child(even) .service-detail-content { grid-column: 2; }
-/* 顔と診察の手元を残す位置。画像は加工・引き伸ばし・追加ズームを行わない。 */
-.page-services #service-1 { --service-photo-position: 53% 40%; }
-.page-services #service-2 { --service-photo-position: 48% 45%; }
-.page-services #service-3 { --service-photo-position: 52% 35%; }
-.page-services #service-4 { --service-photo-position: 48% 40%; }
-.page-services #service-5 { --service-photo-position: 54% 35%; }
-.page-services #service-6 { --service-photo-position: 68% 45%; }
-.page-services #service-7 { --service-photo-position: 42% 40%; }
+/* 写真は元の縦横比・中央配置で全体を表示し、個別の切り抜き位置指定は不要にする。 */
 @media (max-width: 1119px) {
   /* 本文を端末の実寸で表示し、共通部分は従来のPC配置比率を保つ。 */
   .page-services { min-width: 0; }
@@ -239,7 +236,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   .page-services .service-detail-card,
   .page-services .service-detail-card:nth-child(even) { grid-template-columns: minmax(0, 1fr); height: auto; }
   .page-services .service-detail-card .service-detail-photo,
-  .page-services .service-detail-card:nth-child(even) .service-detail-photo { grid-column: 1; grid-row: 1; height: auto; aspect-ratio: 7 / 4; }
+  .page-services .service-detail-card:nth-child(even) .service-detail-photo { grid-column: 1; grid-row: 1; height: auto; }
   .page-services .service-detail-card .service-detail-content,
   .page-services .service-detail-card:nth-child(even) .service-detail-content { grid-column: 1; grid-row: 2; min-height: 220px; padding: 28px; }
 }
@@ -252,20 +249,20 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 }
 
 /* About page */
-.page-about .about-page-content { max-width: 1140px; padding-bottom: 95px; }
-.about-page-lead { max-width: 940px; margin: 40px auto 52px; font-size: 18px; line-height: 1.85; font-weight: 500; text-align: center; }
+.page-about .about-page-content { max-width: var(--content); padding-bottom: 95px; }
+.about-page-lead { max-width: 800px; margin: 32px auto 48px; font-size: 18px; line-height: 1.85; font-weight: 500; text-align: left; }
 /* 紹介カードは当院ページだけ2カラムに統一し、写真への文字重ねをなくす。 */
 .page-about .about-feature-list { width: 950px; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
-/* 変更：行の高さをカード内に収め、写真の縦横比で文章が下にずれないよう全カードの配置を統一。 */
-.page-about .about-feature-card { display: grid; grid-template-columns: 40% 60%; grid-template-rows: minmax(0, 1fr); height: 360px; overflow: hidden; border-radius: 18px; background: #f4faf8; }
-.page-about .about-feature-card > img { grid-column: 2; grid-row: 1; min-height: 0; width: 100%; height: 100%; object-fit: cover; }
+/* 写真を切り取らず、文章量と元画像の縦横比に応じた高さを確保する。 */
+.page-about .about-feature-card { display: grid; grid-template-columns: 40% 60%; min-height: 360px; overflow: hidden; border-radius: 18px; background: #f4faf8; }
+.page-about .about-feature-card > img { grid-column: 2; grid-row: 1; align-self: center; min-height: 0; width: 100%; height: auto; object-fit: contain; object-position: center; }
 .page-about .about-feature-text { grid-column: 1; grid-row: 1; display: flex; flex-direction: column; justify-content: center; padding: 28px; }
 .page-about .about-feature-text h3 { margin: 0 0 18px; font-size: 24px; line-height: 1.5; font-weight: 700; color: #11211d; }
 .page-about .about-feature-text p { margin: 0; font-size: 16px; line-height: 1.6; font-weight: 400; color: #161d1d; }
 /* 変更：小児科の写真は中央を表示し、医師・子ども・母親が見える構図にする。 */
 .page-about .about-feature-card:nth-child(3) > img { object-position: center; }
-.principles-section { margin: 80px auto 0; }
-.principles-section .section-lead { max-width: 980px; }
+.principles-section { margin: var(--section-space) auto 0; }
+.principles-section .section-lead { max-width: 800px; }
 /* 変更：7項目を他の紹介カードと同じ最大幅950pxで中央配置。
    PCはHTMLの番号順に3列で自動配置し、行間を28pxにして読みやすくコンパクトにまとめる。 */
 .principles-grid { width: 950px; max-width: 100%; margin: 62px auto 0; padding: 32px; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; row-gap: 28px; justify-items: center; }
@@ -305,31 +302,30 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
    既存の文字サイズと文章を維持し、上の理念との間隔・内側余白・指定の色を整える。 */
 .page-about .future-panel { max-width: 950px; margin: 40px auto 0; padding: 40px 48px; border-radius: 16px; background: #F1F8F6; }
 .future-panel .principles-subtitle { margin: 0; text-align: center; color: #397F77; font-size: 27px; font-weight: 700; }
-.future-panel .principles-afterword { max-width: 900px; margin: 20px auto 0; color: #26383C; font-size: 17px; line-height: 1.5; text-align: center; }
+.future-panel .principles-afterword { max-width: 800px; margin: 20px auto 0; color: #26383C; font-size: 17px; line-height: 1.5; text-align: center; }
 /* 変更：このボックスからスタッフ紹介までの空白だけを短縮し、他のデザインは維持する。 */
-.page-about .principles-section + .staff-section { padding-top: 64px; }
+.page-about .principles-section + .staff-section { padding-top: var(--section-space); }
 @media (max-width: 767px) {
   /* 変更：画面の左右余白を保ちながら、スマートフォンでも背景ボックスと文章を中央に収める。 */
   .page-about .future-panel { margin-top: 32px; padding: 28px 20px; }
   .future-panel .principles-subtitle { font-size: 23px; }
   .future-panel .principles-afterword { font-size: 16px; }
-  .page-about .principles-section + .staff-section { padding-top: 48px; }
+  .page-about .principles-section + .staff-section { padding-top: var(--section-space); }
 }
-.staff-section { padding-top: 155px; }
-.staff-section .section-lead { max-width: 980px; }
+.staff-section { padding-top: var(--section-space); }
+.staff-section .section-lead { max-width: 800px; }
 .staff-profiles { width: 985px; max-width: 100%; display: flex; flex-direction: column; gap: 75px; margin: 64px auto 0; }
 .staff-profile { display: grid; grid-template-columns: 220px 1fr; gap: 55px; align-items: center; min-height: 300px; }
-.staff-profile > img { display: block; width: 220px; height: 288px; border-radius: 16px; object-fit: cover; object-position: center 30%; }
-.staff-profile img[alt="看護師長 鈴木 真里"] { object-position: 88% 30%; }
-.staff-profile img[alt="医療事務 山本 花"] { object-position: 5% 30%; }
+.staff-profile > img { display: block; width: 220px; height: auto; border-radius: 16px; object-fit: contain; object-position: center; }
 .staff-bio h4 { margin: 0 0 25px; font-size: 26px; font-weight: 700; color: #111; }
 .staff-bio p { margin: 0 0 10px; color: #161d1d; font-size: 17px; line-height: 1.7; }
 .staff-bio strong { font-weight: 700; }
 
 /* Hours / location page */
-.page-access .access-page-content { max-width: 980px; min-height: 2210px; padding-bottom: 145px; }
+.page-access .access-page-content { max-width: var(--content); min-height: 2210px; padding-bottom: 145px; }
 .access-page-content .section-lead { margin-bottom: 44px; }
-.access-subsection { max-width: 900px; margin: 0 auto 70px; }
+.access-subsection { max-width: 900px; margin: 0 auto; }
+.access-subsection + .access-subsection { margin-top: var(--section-space); }
 .access-subsection > h3 { margin: 0 0 28px; font-size: 23px; font-weight: 700; }
 .access-subsection .schedule-table { width: 100%; }
 .access-subsection .schedule-legend { margin-top: 22px; }
@@ -359,7 +355,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
     overflow-wrap: anywhere;
   }
   main > .section-wrap,
-  main > .subpage-section { padding-left: 16px; padding-right: 16px; }
+  main > .subpage-section { padding-left: var(--page-gutter); padding-right: var(--page-gutter); }
   main .section-lead,
   main .greeting-copy,
   main .about-teaser-copy,
@@ -393,7 +389,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   .home-access-grid { grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 24px; }
   .staff-teaser-card { max-width: 100%; text-align: center; }
   main .pill { max-width: 100%; white-space: normal; text-align: center; }
-  .hero-frame { width: calc(100% - 32px); }
+  .hero-frame { width: calc(100% - 2 * var(--page-gutter)); }
   .hero-text-side { width: 52%; padding-left: 24px; padding-right: 24px; }
   .hero-text-side h1 { font-size: 36px; white-space: normal; }
   .hero-small-links { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -410,7 +406,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 }
 @media (max-width: 767px) {
   /* TOPの6見出しと下層の大見出しを同じ規則で表示する。 */
-  main .section-title { font-size: 28px; font-weight: 700; line-height: 1.45; }
+  main .section-title { font-size: 26px; font-weight: 700; line-height: 1.45; }
   main .section-title::after { width: 75px; height: 2px; margin: 19px auto 0; background: var(--rule); }
   main { --subheading-size: 20px; }
   .hero-frame { flex-direction: column; align-items: stretch; height: auto; }
@@ -428,9 +424,6 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   .access-info-card { padding: 24px; }
   .news-row { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 20px 0; }
   .news-expand { justify-self: end; }
-  /* カードの並びと写真の左右位置は保ち、16px本文が入る幅だけ確保する。 */
-  .page-about .about-feature-card { grid-template-columns: 60% 40%; }
-  .page-about .about-feature-text { padding: 16px 12px; }
   .page-about .principles-section { width: 100%; padding-left: 0; padding-right: 0; }
   .principles-section .principle-phrase { display: inline; }
   .staff-profile { grid-template-columns: minmax(0, 1fr); }
@@ -439,6 +432,56 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   main .schedule-table thead th, main .schedule-table tbody th { font-size: 14px; }
   main .schedule-table tbody th small { font-size: 12px; }
   .home-schedule .schedule-note { font-size: 16px; line-height: 1.5; }
+}
+
+/* 余白と改行の共通規則。原稿・リンク・共通ナビゲーションには手を加えない。 */
+main p,
+main .access-subsection li,
+main .news-row-title {
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+.page-services .service-detail-content p { overflow-wrap: break-word; }
+main .section-lead br, main .about-page-lead br,
+main .principles-afterword br { display: none; }
+.home-access-map { height: auto; align-self: center; object-fit: contain; object-position: center; }
+.about-teaser-images { align-items: center; }
+.about-teaser-images img { height: auto; object-fit: contain; object-position: center; }
+.access-map { height: auto; object-fit: contain; object-position: center; }
+.greeting-portrait > img:first-child { height: auto; object-fit: contain; object-position: center; }
+@media (max-width: 1119px) {
+  :root { --section-space: 80px; }
+  main { padding-top: 40px; }
+}
+@media (max-width: 900px) {
+  /* 中間幅でも本文が細くなりすぎないよう、カードの内部だけ縦に流す。 */
+  .page-about .about-feature-card { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .page-about .about-feature-text { grid-column: 1; grid-row: 1; padding: 28px; }
+  .page-about .about-feature-card > img { grid-column: 1; grid-row: 2; }
+  .principles-grid { column-gap: 20px; padding-left: 24px; padding-right: 24px; }
+  .principles-section .principle-phrase { display: inline; }
+}
+@media (max-width: 767px) {
+  :root { --page-gutter: 24px; --section-space: 64px; }
+  main { padding-top: 32px; }
+  main .section-title::after { margin-top: 16px; }
+  main .section-lead, main .about-page-lead { margin-top: 28px; }
+  .page-about .about-feature-text { padding: 24px; }
+  .page-services .service-detail-card .service-detail-content,
+  .page-services .service-detail-card:nth-child(even) .service-detail-content { min-height: 0; padding: 24px; }
+  .hero-text-side { padding: 24px 16px; }
+  .hero-building { width: calc(100% - 32px); margin-left: 16px; margin-right: 16px; }
+  .staff-profile > img { width: min(100%, 360px); }
+  .access-info-card { padding: 24px 20px; }
+  .news-row { gap: 16px; }
+}
+
+/* PCでは内側の余白でカードを二重に狭めず、実際の本文・カード幅を最大950pxにする。 */
+@media (min-width: 1120px) {
+  main > .section-wrap,
+  main > .subpage-section { width: calc(100% - 2 * var(--page-gutter)); padding-left: 0; padding-right: 0; }
 }
 
 /* Footer is shared by all five pages */
