@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/news-carousel.js" defer></script>
 </head>
 <body class="page-home">
 <a class="skip-link" href="#main">本文へ移動</a>
@@ -49,10 +50,28 @@
 </table></div>
   <p class="schedule-legend"><span>●＝診療</span><span>／＝休診</span></p>
   <p class="schedule-note">受付時間：午前 8:00～11:00 ／ 午後 12:00～17:00</p>
-  <ul class="home-news-list"><li class="home-news-item"><time datetime="2025-09-27">2025.09.27</time><span class="home-news-name">インフルエンザ予防接種について</span><a class="pill pill-solid" href="./news.html#news-1">詳しくはこちら</a></li>
-<li class="home-news-item"><time datetime="2024-12-20">2024.12.20</time><span class="home-news-name">年末年始の休診について</span><a class="pill pill-solid" href="./news.html#news-2">詳しくはこちら</a></li>
-<li class="home-news-item"><time datetime="2024-09-10">2024.09.10</time><span class="home-news-name">健康診断のご案内</span><a class="pill pill-solid" href="./news.html#news-3">詳しくはこちら</a></li>
-<li class="home-news-item"><time datetime="2024-04-08">2024.04.08</time><span class="home-news-name">新型コロナウイルス対策について</span><a class="pill pill-solid" href="./news.html#news-4">詳しくはこちら</a></li></ul>
+  <div class="news-carousel" role="region" aria-roledescription="カルーセル" aria-label="医院からのお知らせ">
+    <div class="news-carousel-stage">
+      <button class="news-arrow news-prev" type="button" aria-label="前のお知らせへ" aria-controls="home-news-track" hidden>‹</button>
+      <div class="news-viewport">
+        <!-- 通常はnews.htmlから最新5件を取得。以下はファイル直接表示・通信失敗時の予備表示。 -->
+        <ul class="home-news-list" id="home-news-track">
+          <li class="home-news-item"><time datetime="2025-09-27">2025.09.27</time><h3 class="home-news-name">インフルエンザ予防接種について</h3><a class="news-card-link" href="./news.html#news-1" aria-label="インフルエンザ予防接種について：詳しくはこちら">詳しくはこちら<span aria-hidden="true"> ›</span></a></li>
+          <li class="home-news-item"><time datetime="2024-12-20">2024.12.20</time><h3 class="home-news-name">年末年始の休診について</h3><a class="news-card-link" href="./news.html#news-2" aria-label="年末年始の休診について：詳しくはこちら">詳しくはこちら<span aria-hidden="true"> ›</span></a></li>
+          <li class="home-news-item"><time datetime="2024-09-10">2024.09.10</time><h3 class="home-news-name">健康診断のご案内</h3><a class="news-card-link" href="./news.html#news-3" aria-label="健康診断のご案内：詳しくはこちら">詳しくはこちら<span aria-hidden="true"> ›</span></a></li>
+          <li class="home-news-item"><time datetime="2024-04-08">2024.04.08</time><h3 class="home-news-name">新型コロナウイルス対策について</h3><a class="news-card-link" href="./news.html#news-4" aria-label="新型コロナウイルス対策について：詳しくはこちら">詳しくはこちら<span aria-hidden="true"> ›</span></a></li>
+          <li class="home-news-item"><time datetime="2024-01-18">2024.01.18</time><h3 class="home-news-name">オンライン診察の導入について</h3><a class="news-card-link" href="./news.html#news-5" aria-label="オンライン診察の導入について：詳しくはこちら">詳しくはこちら<span aria-hidden="true"> ›</span></a></li>
+        </ul>
+      </div>
+      <button class="news-arrow news-next" type="button" aria-label="次のお知らせへ" aria-controls="home-news-track" hidden>›</button>
+    </div>
+    <div class="news-carousel-controls" hidden>
+      <div class="news-dots" role="group" aria-label="表示するお知らせを選択"></div>
+      <button class="news-playback" type="button" aria-pressed="false">自動再生を一時停止</button>
+      <span class="news-playback-note">5秒ごとに自動で切り替わります</span>
+    </div>
+    <p class="news-status" aria-live="polite" aria-atomic="true"></p>
+  </div>
   <div class="section-action"><a href="./news.html" class="pill pill-outline">お知らせ一覧はこちら</a></div>
 </section>
 <section class="home-services section-wrap" id="services">
