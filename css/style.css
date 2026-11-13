@@ -395,6 +395,36 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   .main-nav { gap: 0 16px; }
 }
 
+/* 開閉式の共通ヘッダー。本文・フッターのレイアウトには介入しない。 */
+.header-phone-icon, .menu-toggle { display: none; }
+.site-header .main-nav[hidden], .menu-toggle[hidden] { display: none; }
+.menu-toggle { flex: none; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--rule); border-radius: 12px; background: #fff; color: var(--green-dark); cursor: pointer; }
+.menu-toggle:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+.menu-toggle-icon { position: relative; display: block; width: 20px; height: 18px; }
+.menu-toggle-icon span { position: absolute; left: 0; width: 20px; height: 2px; border-radius: 1px; background: currentColor; }
+.menu-toggle-icon span:nth-child(1) { top: 0; }
+.menu-toggle-icon span:nth-child(2) { top: 8px; }
+.menu-toggle-icon span:nth-child(3) { top: 16px; }
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+@media (max-width: 1000px) {
+  .site-header.has-menu { position: relative; z-index: 60; }
+  .site-header.has-menu .site-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; }
+  .site-header.has-menu .brand { flex: none; }
+  .site-header.has-menu .header-phone { margin-left: auto; flex: none; }
+  .site-header.has-menu .menu-toggle:not([hidden]) { display: flex; }
+  .site-header.has-menu .main-nav { position: absolute; top: 100%; left: 16px; right: 16px; z-index: 1; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0; max-height: var(--menu-max-height, calc(100dvh - 120px)); margin: 0; padding: 12px; overflow-y: auto; overscroll-behavior: contain; border: 1px solid #dfebe8; border-radius: 12px; background: var(--mint-light); box-shadow: 0 10px 24px rgba(20,60,55,.12); white-space: normal; }
+  .site-header.has-menu .main-nav[hidden] { display: none; }
+  .site-header.has-menu .main-nav a { flex: none; min-height: 52px; padding: 12px 14px; border-radius: 6px; }
+  .site-header.has-menu .main-nav a:hover { background: var(--mint); }
+}
+@media (max-width: 359px) {
+  .site-header.has-menu .header-phone { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: #ddf3f0; color: var(--green-dark); }
+  .site-header.has-menu .header-phone img { display: none; }
+  .site-header.has-menu .header-phone-icon { display: block; width: 22px; height: 22px; }
+}
+
 /* このページの先頭へ戻る共通ボタン。座標は既存ボタン・フッターを避けて調整。 */
 .back-to-top { position: fixed; z-index: 50; right: max(20px, env(safe-area-inset-right)); bottom: var(--back-to-top-bottom, 20px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 54px; height: 54px; padding: 0; border: 0; border-radius: 50%; background: var(--green); color: #fff; font: inherit; font-size: 11px; line-height: 1.2; box-shadow: 0 3px 10px rgba(20,60,55,.16); cursor: pointer; transition: background-color .15s ease; }
 .back-to-top[hidden] { display: none; }

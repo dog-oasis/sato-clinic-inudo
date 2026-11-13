@@ -1,3 +1,65 @@
+/* 全ページ共通の開閉メニュー。既存の本文や「上へ戻る」と独立して制御する。 */
+(() => {
+  const header = document.querySelector('.site-header');
+  const nav = header?.querySelector('.main-nav');
+  const toggle = header?.querySelector('.menu-toggle');
+  if (!nav || !toggle || header.classList.contains('has-menu')) return;
+  const compact = window.matchMedia('(max-width: 1000px)');
+  let open = false;
+  header.classList.add('has-menu');
+
+  function fitPanel() {
+    header.style.setProperty('--menu-max-height', `${Math.max(0, window.innerHeight - header.getBoundingClientRect().bottom - 16)}px`);
+  }
+
+  function closeMenu(restoreFocus = false) {
+    open = false;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'メニューを開く');
+    nav.hidden = compact.matches;
+    if (restoreFocus && compact.matches) toggle.focus({ preventScroll: true });
+  }
+
+  function syncLayout() {
+    closeMenu();
+    toggle.hidden = !compact.matches;
+    // 電話バッジ・アイコンのリンクと読み上げ名は、全画面幅でHTMLの既存設定を維持する。
+  }
+
+  toggle.addEventListener('click', () => {
+    if (open) {
+      closeMenu(true);
+      return;
+    }
+    if (!compact.matches) return;
+    fitPanel();
+    open = true;
+    nav.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'メニューを閉じる');
+    nav.querySelector('a')?.focus({ preventScroll: true });
+  });
+  nav.addEventListener('click', event => {
+    if (event.target.closest('a[href]')) closeMenu();
+  });
+  header.querySelectorAll('.brand, .header-phone').forEach(link => link.addEventListener('click', () => closeMenu()));
+  document.addEventListener('keydown', event => {
+    if (open && event.key === 'Escape') {
+      event.preventDefault();
+      closeMenu(true);
+    }
+  });
+  document.addEventListener('pointerdown', event => {
+    if (open && !header.contains(event.target)) closeMenu();
+  });
+  document.addEventListener('focusin', event => {
+    if (open && !header.contains(event.target)) closeMenu();
+  });
+  compact.addEventListener('change', syncLayout);
+  window.addEventListener('resize', () => { if (open) fitPanel(); });
+  syncLayout();
+})();
+
 /* 全ページ共通。既存のリンク・本文・個別ページのJavaScriptには介入しない。 */
 (() => {
   if (document.querySelector('.back-to-top')) return;
