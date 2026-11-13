@@ -16,7 +16,6 @@
         .filter(row => row.querySelector('time[datetime]') && row.querySelector('.news-row-title'))
         .sort((a, b) => b.querySelector('time').dateTime.localeCompare(a.querySelector('time').dateTime))
         .slice(0, 5);
-      if (!rows.length) return;
       track.replaceChildren(...rows.map(row => {
         const card = document.createElement('li');
         card.className = 'home-news-item';
@@ -39,6 +38,8 @@
   function start() {
     const originals = [...track.children];
     const count = originals.length;
+    // 循環用の複製カードを追加する前に、実際の記事数を表示する。
+    root.querySelector('.news-count').textContent = `${count}件`;
     if (!count) return;
     const pad = Math.min(3, count);
     let position = pad;
