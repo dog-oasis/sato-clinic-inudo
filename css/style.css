@@ -119,11 +119,10 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .home-schedule .section-action .pill { min-width: 290px; min-height: 48px; font-size: 16px; }
 
 @media (max-width: 1119px) {
-  /* PC固定幅によるページ全体のはみ出しを防ぐ。共通部分・他セクションは従来の配置比率で縮小。 */
+  /* 共通部分の既存表示を維持。本文は下記の可変幅ルールで端末の実寸に合わせる。 */
   .page-home { min-width: 0; }
   .page-home > .site-header,
-  .page-home > .site-footer,
-  .page-home main > section:not(.home-schedule) { width: 1120px; min-width: 1120px; zoom: calc(100vw / 1120px); }
+  .page-home > .site-footer { width: 1120px; min-width: 1120px; zoom: calc(100vw / 1120px); }
   .page-home .home-schedule { width: 100vw; max-width: 100vw; margin-left: 0; }
   .news-carousel { --news-columns: 2; }
   .home-news-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -133,8 +132,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 }
 @media (max-width: 767px) {
   .page-home .home-schedule { width: 100vw; max-width: 100vw; margin-left: 0; padding: 56px 16px 0; }
-  .home-schedule .section-title { font-size: 27px; }
-  .home-schedule .section-lead { text-align: left; font-size: 14px; }
+  .home-schedule .section-lead { text-align: left; }
   .home-schedule .schedule-table th:first-child { width: 88px; }
   .home-schedule .schedule-table thead th { font-size: 14px; }
   .home-schedule .schedule-table tbody th { font-size: 14px; }
@@ -352,6 +350,97 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .contact-section li { margin: 4px 0; }
 .demo-contact-note { color: #54706d; font-size: 13px !important; }
 
+/* 本文のレスポンシブ文字組み。縮小せず、原稿・カード順・画像を維持して折り返す。 */
+@media (max-width: 1119px) {
+  main {
+    --body-size: 16px;
+    --subheading-size: 22px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  main > .section-wrap,
+  main > .subpage-section { padding-left: 16px; padding-right: 16px; }
+  main .section-lead,
+  main .greeting-copy,
+  main .about-teaser-copy,
+  main .about-page-lead,
+  main .services-page-lead,
+  main .access-info-card p,
+  .page-about main .about-feature-text p,
+  main .principles-section .principle p,
+  main .future-panel .principles-afterword,
+  main .staff-bio p,
+  main .access-subsection p,
+  main .access-subsection li {
+    font-size: var(--body-size);
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+  }
+  .page-about main .about-feature-text h3,
+  .page-services main .service-detail-content h3,
+  main .access-subsection > h3,
+  main .access-info-card h3,
+  main .principles-section .principle h4,
+  main .staff-bio h4,
+  main .future-panel .principles-subtitle {
+    font-size: var(--subheading-size);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .greeting-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 405px); gap: 32px; }
+  .about-teaser { gap: 24px; }
+  .home-access-grid { grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 24px; }
+  .staff-teaser-card { max-width: 100%; text-align: center; }
+  main .pill { max-width: 100%; white-space: normal; text-align: center; }
+  .hero-frame { width: calc(100% - 32px); }
+  .hero-text-side { width: 52%; padding-left: 24px; padding-right: 24px; }
+  .hero-text-side h1 { font-size: 36px; white-space: normal; }
+  .hero-small-links { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .hero-link-tile { width: auto; height: auto; min-height: 105px; padding: 12px; }
+  .hero-building { right: 2%; width: 45%; }
+  .news-row { grid-template-columns: 125px minmax(0, 1fr) 168px; gap: 20px; }
+  .news-row, .news-row time { font-size: 16px; line-height: 1.5; }
+  .news-row-title { line-height: 1.5; }
+  .about-feature-card .about-feature-text { min-width: 0; padding: 20px; }
+  .page-about .about-feature-card { height: auto; min-height: 360px; }
+  .staff-profile { grid-template-columns: 220px minmax(0, 1fr); gap: 28px; }
+  .access-map { max-width: 100%; height: auto; }
+  main .schedule-legend { flex-wrap: wrap; gap: 8px 32px; }
+}
+@media (max-width: 767px) {
+  /* TOPの6見出しと下層の大見出しを同じ規則で表示する。 */
+  main .section-title { font-size: 28px; font-weight: 700; line-height: 1.45; }
+  main .section-title::after { width: 75px; height: 2px; margin: 19px auto 0; background: var(--rule); }
+  main { --subheading-size: 20px; }
+  .hero-frame { flex-direction: column; align-items: stretch; height: auto; }
+  .hero-text-side { width: 100%; height: auto; padding: 24px; gap: 24px; }
+  .hero-text-side h1 { font-size: 28px; }
+  .hero-link-tile strong { font-size: 16px; }
+  .hero-building { position: static; width: calc(100% - 48px); height: auto; margin: 0 24px 24px; }
+  .home-service-grid { gap: 16px; }
+  .home-service-card { padding: 16px 8px; text-align: center; }
+  .service-card-title { font-size: 20px; line-height: 1.5; }
+  .service-card-more { font-size: 16px; }
+  .greeting-grid, .about-teaser, .home-access-grid { grid-template-columns: minmax(0, 1fr); }
+  .greeting-portrait { max-width: 405px; margin: 0 auto; }
+  .greeting-portrait > img:first-child { height: auto; }
+  .access-info-card { padding: 24px; }
+  .news-row { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 20px 0; }
+  .news-expand { justify-self: end; }
+  /* カードの並びと写真の左右位置は保ち、16px本文が入る幅だけ確保する。 */
+  .page-about .about-feature-card { grid-template-columns: 60% 40%; }
+  .page-about .about-feature-text { padding: 16px 12px; }
+  .page-about .principles-section { width: 100%; padding-left: 0; padding-right: 0; }
+  .principles-section .principle-phrase { display: inline; }
+  .staff-profile { grid-template-columns: minmax(0, 1fr); }
+  .staff-profile > img { justify-self: center; }
+  main .schedule-table th:first-child { width: 88px; }
+  main .schedule-table thead th, main .schedule-table tbody th { font-size: 14px; }
+  main .schedule-table tbody th small { font-size: 12px; }
+  .home-schedule .schedule-note { font-size: 16px; line-height: 1.5; }
+}
+
 /* Footer is shared by all five pages */
 .site-footer { width: 100%; color: #fff; background: #397f77; padding: 72px 0 24px; }
 .footer-inner { max-width: 1210px; margin: 0 auto; }
@@ -375,10 +464,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
   #top.site-header { width: 100vw; min-width: 0; max-width: 100%; zoom: 1; }
   .site-header-inner { gap: 16px; padding-left: 16px; padding-right: 16px; }
   .main-nav { gap: 20px; padding-left: 0; }
-  /* PC固定幅の本文・フッターは、従来の縮小表示と配置比率を維持する。 */
-  .page-about > main,
-  .page-access > main,
-  .page-news:not(.page-news-detail) > main { width: 1120px; zoom: calc(100vw / 1120px); }
+  /* フッターは今回の変更対象外のため、従来の表示を維持する。 */
   .site-footer { width: 1120px; zoom: calc(100vw / 1120px); }
 }
 @media (max-width: 1000px) {

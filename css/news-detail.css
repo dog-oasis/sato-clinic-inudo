@@ -14,6 +14,7 @@
 .news-detail-nav [hidden] { display: none; }
 .news-detail-noscript { padding: 20px 0; font-size: 16px; }
 @media (max-width: 1119px) {
+  .news-detail-body { font-size: 16px; font-weight: 400; line-height: 1.5; text-align: left; }
   /* 既存の配置・寸法比・文言を保ち、共通部分だけ画面幅に縮小する。本文は縮小しない。 */
   .page-news-detail > .site-header,
   .page-news-detail > .site-footer { width: 1120px; zoom: calc(100vw / 1120px); }
@@ -21,7 +22,7 @@
 @media (max-width: 767px) {
   .news-detail-main { width: calc(100% - 32px); margin: 24px auto 48px; min-height: 360px; }
   .news-detail-article { padding-top: 20px; }
-  .news-detail-title { margin-top: 12px; padding-bottom: 20px; font-size: 22px; }
+  .news-detail-title { margin-top: 12px; padding-bottom: 20px; font-size: 28px; }
   .news-detail-body { margin: 24px 0 32px; font-size: 16px; }
   .news-detail-nav { gap: 12px 8px; font-size: 14px; }
   .news-detail-back { min-width: 0; padding: 10px 12px; font-size: 13px; white-space: normal; text-align: center; }
