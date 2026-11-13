@@ -1,6 +1,6 @@
 /* お知らせ詳細専用。既存ページと共通ヘッダー・フッターのスタイルは変更しない。 */
 .page-news-detail { min-width: 0; }
-.news-detail-main { width: min(760px, calc(100% - 2 * var(--page-gutter))); min-height: 420px; margin: 0 auto 72px; padding-top: 80px; }
+.news-detail-main { width: min(760px, calc(100% - 2 * var(--page-gutter))); margin: 0 auto var(--footer-space); padding-top: 80px; }
 .news-detail-article { padding: 0; }
 .news-detail-date { color: var(--green); font-size: 16px; }
 .news-detail-title { margin: 14px 0 0; padding-bottom: 26px; border-bottom: 1px solid #dfebe8; font-size: 28px; font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; }
@@ -17,11 +17,10 @@
   .news-detail-main { padding-top: 64px; }
   .news-detail-body { font-size: 16px; font-weight: 400; line-height: 1.7; text-align: left; }
   /* 既存の配置・寸法比・文言を保ち、共通部分だけ画面幅に縮小する。本文は縮小しない。 */
-  .page-news-detail > .site-header,
-  .page-news-detail > .site-footer { width: 1120px; zoom: calc(100vw / 1120px); }
+  .page-news-detail > .site-header { width: 1120px; zoom: calc(100vw / 1120px); }
 }
 @media (max-width: 767px) {
-  .news-detail-main { margin: 0 auto 56px; min-height: 360px; padding-top: 48px; }
+  .news-detail-main { padding-top: 48px; }
   .news-detail-title { margin-top: 16px; padding-bottom: 20px; font-size: 26px; }
   .news-detail-body { margin: 24px 0 32px; font-size: 16px; }
   .news-detail-nav { gap: 12px 8px; font-size: 14px; }

@@ -15,6 +15,7 @@
   --content: 950px;
   --page-gutter: 32px;
   --section-space: 96px;
+  --footer-space: 80px;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -124,8 +125,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 @media (max-width: 1119px) {
   /* 共通部分の既存表示を維持。本文は下記の可変幅ルールで端末の実寸に合わせる。 */
   .page-home { min-width: 0; }
-  .page-home > .site-header,
-  .page-home > .site-footer { width: 1120px; min-width: 1120px; zoom: calc(100vw / 1120px); }
+  .page-home > .site-header { width: 1120px; min-width: 1120px; zoom: calc(100vw / 1120px); }
   .page-home .home-schedule { width: 100%; max-width: var(--content); margin-left: auto; }
   .news-carousel { --news-columns: 2; }
   .home-news-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -189,7 +189,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .staff-teaser-icons img { width: 79px; height: 79px; object-fit: contain; }
 
 /* Homepage access */
-.home-access { padding-top: var(--section-space); padding-bottom: 120px; }
+.home-access { padding-top: var(--section-space); padding-bottom: var(--footer-space); }
 .home-access-grid { display: grid; grid-template-columns: 400px 1fr; gap: 85px; align-items: stretch; width: 1040px; max-width: 100%; margin: 40px auto 0; }
 .access-info-card { border-radius: 18px; background: var(--mint); padding: 30px 36px; line-height: 1.65; }
 .access-info-card h3 { font-size: 19px; margin: 0 0 8px; font-weight: 700; }
@@ -200,20 +200,21 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 
 /* Secondary pages */
 .subpage-section { width: 100%; margin-left: auto; margin-right: auto; padding-left: var(--page-gutter); padding-right: var(--page-gutter); }
-.page-news .news-page-content { max-width: 900px; min-height: 0; padding-bottom: 80px; }
+.page-news .news-page-content { max-width: 900px; min-height: 0; padding-bottom: var(--footer-space); }
 .page-news .section-title { color: #111; }
 .page-news .section-title::after { background: #333; }
 .news-page-list { list-style: none; padding: 0; max-width: 900px; margin: 40px auto 0; }
 .news-row { display: grid; grid-template-columns: 150px minmax(0,1fr) 168px; gap: 24px; align-items: start; min-height: 97px; color: #111; font-size: 20px; }
 .news-row time { font-size: 18px; white-space: nowrap; }
 .news-row-title { line-height: 1.7; }
+.news-page-list .news-row:last-child { min-height: 0; padding-bottom: 0; }
 .news-expand { position: relative; justify-self: end; align-self: start; }
 .news-expand summary, .news-expand > a { display: flex; list-style: none; font-size: 16px; }
 .news-expand summary::-webkit-details-marker { display: none; }
 .news-expanded-copy { position: absolute; top: 52px; right: 0; z-index: 3; width: 420px; padding: 20px 24px; background: #f4faf8; border: 1px solid #c9e4dc; border-radius: 10px; color: var(--ink); font-size: 15px; box-shadow: 0 9px 28px rgba(17,70,64,.12); }
 
 /* Individual service listings */
-.page-services .services-page-content { max-width: var(--content); padding-bottom: 270px; }
+.page-services .services-page-content { max-width: var(--content); padding-bottom: var(--footer-space); }
 .services-page-lead { margin-top: 34px; margin-bottom: 58px; font-size: 19px; font-weight: 500; line-height: 1.95; }
 .page-services .service-detail-list { width: 950px; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
 .page-services .service-detail-card { position: relative; isolation: isolate; display: grid; grid-template-columns: 40% 60%; min-height: 340px; overflow: hidden; border-radius: 19px; background: #fff; }
@@ -229,8 +230,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 @media (max-width: 1119px) {
   /* 本文を端末の実寸で表示し、共通部分は従来のPC配置比率を保つ。 */
   .page-services { min-width: 0; }
-  .page-services > .site-header,
-  .page-services > .site-footer { width: 1120px; zoom: calc(100vw / 1120px); }
+  .page-services > .site-header { width: 1120px; zoom: calc(100vw / 1120px); }
 }
 @media (max-width: 900px) {
   .page-services .service-detail-card,
@@ -249,7 +249,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 }
 
 /* About page */
-.page-about .about-page-content { max-width: var(--content); padding-bottom: 95px; }
+.page-about .about-page-content { max-width: var(--content); padding-bottom: var(--footer-space); }
 .about-page-lead { max-width: 800px; margin: 32px auto 48px; font-size: 18px; line-height: 1.85; font-weight: 500; text-align: left; }
 /* 紹介カードは当院ページだけ2カラムに統一し、写真への文字重ねをなくす。 */
 .page-about .about-feature-list { width: 950px; max-width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
@@ -322,7 +322,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .staff-bio strong { font-weight: 700; }
 
 /* Hours / location page */
-.page-access .access-page-content { max-width: var(--content); min-height: 2210px; padding-bottom: 145px; }
+.page-access .access-page-content { max-width: var(--content); min-height: 0; padding-bottom: var(--footer-space); }
 .access-page-content .section-lead { margin-bottom: 44px; }
 .access-subsection { max-width: 900px; margin: 0 auto; }
 .access-subsection + .access-subsection { margin-top: var(--section-space); }
@@ -344,6 +344,7 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 .contact-section { margin-top: 85px; margin-bottom: 0; }
 .contact-section ul { margin-top: 35px; }
 .contact-section li { margin: 4px 0; }
+.contact-section > :last-child { margin-bottom: 0; }
 .demo-contact-note { color: #54706d; font-size: 13px !important; }
 
 /* 本文のレスポンシブ文字組み。縮小せず、原稿・カード順・画像を維持して折り返す。 */
@@ -464,7 +465,7 @@ main .principles-afterword br { display: none; }
   .principles-section .principle-phrase { display: inline; }
 }
 @media (max-width: 767px) {
-  :root { --page-gutter: 24px; --section-space: 64px; }
+  :root { --page-gutter: 24px; --section-space: 64px; --footer-space: 64px; }
   main { padding-top: 32px; }
   main .section-title::after { margin-top: 16px; }
   main .section-lead, main .about-page-lead { margin-top: 28px; }
@@ -484,22 +485,36 @@ main .principles-afterword br { display: none; }
   main > .subpage-section { width: calc(100% - 2 * var(--page-gutter)); padding-left: 0; padding-right: 0; }
 }
 
-/* Footer is shared by all five pages */
-.site-footer { width: 100%; color: #fff; background: #397f77; padding: 72px 0 24px; }
-.footer-inner { max-width: 1210px; margin: 0 auto; }
-.footer-grid { display: grid; grid-template-columns: minmax(360px,1.5fr) minmax(155px,.75fr) minmax(235px,1.1fr) minmax(210px, .9fr); gap: 40px; }
+/* 全6ページ共通。背景は全幅、内容は最大950pxで中央配置し、文字を縮小しない。 */
+.site-footer { width: 100%; min-width: 0; zoom: 1; color: #fff; background: #397f77; padding: 64px 32px 32px; }
+.footer-inner { max-width: 950px; margin: 0 auto; overflow-wrap: anywhere; }
+.footer-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.footer-grid > *, .footer-support > * { min-width: 0; }
+.footer-support { display: grid; gap: 28px; }
 .footer-logo { display: block; width: 175px; height: auto; margin-bottom: 26px; }
-.footer-identity address { font-style: normal; font-size: 15px; line-height: 1.8; }
-.footer-identity p { margin: 22px 0 0; font-size: 15px; line-height: 1.8; }
-.footer-menu { display: flex; flex-direction: column; align-items: flex-start; font-size: 17px; line-height: 1.58; padding-top: 83px; }
+.footer-identity address { font-style: normal; font-size: 16px; line-height: 1.8; }
+.footer-identity p { margin: 22px 0 0; font-size: 16px; line-height: 1.8; }
+.footer-menu { display: flex; flex-direction: column; align-items: stretch; font-size: 16px; line-height: 1.6; }
+.footer-menu a { display: flex; align-items: center; min-height: 44px; padding: 8px 0; }
+.footer-identity p a { display: inline-flex; align-items: center; min-height: 44px; }
 .footer-menu a:hover, .footer-identity a:hover { text-decoration: underline; }
-.footer-menu-heading { font-weight: 700; margin-bottom: 10px; }
-.footer-copyright { margin: 81px 0 0; font-size: 12px; text-align: center; }
-.footer-disclaimer { font-size: 11px; opacity: .75; text-align: center; margin: 18px 0 0; }
-
-/* Secondary page footer spacing follows the shorter notice-page reference. */
-.page-news .site-footer { padding-top: 60px; }
-.page-news .footer-copyright { margin-top: 64px; }
+.footer-menu-heading { font-weight: 700; margin-bottom: 8px; line-height: 1.6; }
+.footer-copyright { margin: 48px 0 0; font-size: 14px; text-align: center; }
+.footer-disclaimer { font-size: 13px; line-height: 1.7; opacity: .75; text-align: center; margin: 18px 0 0; text-wrap: pretty; }
+@media (max-width: 1119px) {
+  .footer-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 32px; }
+  .footer-identity { grid-column: 1 / -1; }
+}
+@media (max-width: 767px) {
+  .site-footer { padding: 48px 24px 28px; }
+  .footer-grid { column-gap: 20px; }
+  .footer-menu { font-size: 15px; }
+  .footer-copyright { margin-top: 40px; }
+}
+@media (max-width: 359px) {
+  .site-footer { padding-left: 18px; padding-right: 18px; }
+  .footer-grid { grid-template-columns: minmax(0, 1fr); }
+}
 
 /* 共通ナビゲーション：既存のロゴ・電話バッジを保ち、全5項目を表示する。 */
 @media (max-width: 1119px) {
@@ -507,8 +522,6 @@ main .principles-afterword br { display: none; }
   #top.site-header { width: 100vw; min-width: 0; max-width: 100%; zoom: 1; }
   .site-header-inner { gap: 16px; padding-left: 16px; padding-right: 16px; }
   .main-nav { gap: 20px; padding-left: 0; }
-  /* フッターは今回の変更対象外のため、従来の表示を維持する。 */
-  .site-footer { width: 1120px; zoom: calc(100vw / 1120px); }
 }
 @media (max-width: 1000px) {
   #top.site-header { height: auto; }
