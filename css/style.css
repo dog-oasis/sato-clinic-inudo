@@ -368,3 +368,39 @@ a.pill:hover, summary.pill:hover { transform: translateY(-1px); }
 /* Secondary page footer spacing follows the shorter notice-page reference. */
 .page-news .site-footer { padding-top: 60px; }
 .page-news .footer-copyright { margin-top: 64px; }
+
+/* 共通ナビゲーション：既存のロゴ・電話バッジを保ち、全5項目を表示する。 */
+@media (max-width: 1119px) {
+  body { min-width: 0; }
+  #top.site-header { width: 100vw; min-width: 0; max-width: 100%; zoom: 1; }
+  .site-header-inner { gap: 16px; padding-left: 16px; padding-right: 16px; }
+  .main-nav { gap: 20px; padding-left: 0; }
+  /* PC固定幅の本文・フッターは、従来の縮小表示と配置比率を維持する。 */
+  .page-about > main,
+  .page-access > main,
+  .page-news:not(.page-news-detail) > main { width: 1120px; zoom: calc(100vw / 1120px); }
+  .site-footer { width: 1120px; zoom: calc(100vw / 1120px); }
+}
+@media (max-width: 1000px) {
+  #top.site-header { height: auto; }
+  .site-header-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: 'brand phone' 'nav nav'; align-items: center; gap: 8px; padding: 16px; }
+  .site-header .brand { grid-area: brand; }
+  .site-header .header-phone { grid-area: phone; margin-top: 0; }
+  .main-nav { grid-area: nav; flex-wrap: wrap; gap: 0 20px; padding: 0; }
+  .main-nav a { display: inline-flex; align-items: center; min-height: 44px; }
+}
+@media (max-width: 479px) {
+  .site-header .brand, .site-header .brand img { width: 130px; }
+  .site-header .header-phone { width: 140px; }
+  .main-nav { gap: 0 16px; }
+}
+
+/* このページの先頭へ戻る共通ボタン。座標は既存ボタン・フッターを避けて調整。 */
+.back-to-top { position: fixed; z-index: 50; right: max(20px, env(safe-area-inset-right)); bottom: var(--back-to-top-bottom, 20px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 54px; height: 54px; padding: 0; border: 0; border-radius: 50%; background: var(--green); color: #fff; font: inherit; font-size: 11px; line-height: 1.2; box-shadow: 0 3px 10px rgba(20,60,55,.16); cursor: pointer; transition: background-color .15s ease; }
+.back-to-top[hidden] { display: none; }
+.back-to-top svg { width: 18px; height: 18px; flex: none; }
+.back-to-top:hover { background: #286b63; }
+.back-to-top:focus-visible { outline: 3px solid var(--green-dark); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top { transition: none; }
+}
